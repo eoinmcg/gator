@@ -15,14 +15,14 @@ BUILD = true; `;
 
 let files = [
   'public/latest.min.js',
-  'dist/g.min.js'
+  'docs/g.min.js'
 ];
 files.forEach((file) => {
   src += fs.readFileSync(file, 'UTF8');
 });
 
-exec('rm dist/*');
-exec('cp public/*.png dist/');
+exec('rm docs/*');
+exec('cp public/*.png docs/');
 
 let html = `<!DOCTYPE html>
   <html lang="en">
@@ -37,14 +37,14 @@ let html = `<!DOCTYPE html>
   <script>${src}</script>
   </body>
   </html>`;
-fs.writeFileSync('dist/index.html', html);
+fs.writeFileSync('docs/index.html', html);
 
 async function zipIt(zipName) {
-  await zip('dist', zipName);
+  await zip('docs', zipName);
 }
 
 const zipName = p.name + '.zip';
 zipIt(zipName)
 .then(() => {
-  exec(`mv ${zipName} dist/`);
+  exec(`mv ${zipName} docs/`);
   })

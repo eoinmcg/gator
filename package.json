@@ -5,7 +5,7 @@
   "scripts": {
     "start": "esbuild --bundle src/index.js --outfile=public/game.js --servedir=public --sourcemap --serve=8008",
     "dev": "npm start",
-    "build": "esbuild ./src/index.js --bundle --outfile=dist/g.min.js && node ./scripts/build.js",
+    "build": "esbuild ./src/index.js --bundle --outfile=docs/g.min.js && node ./scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eoin McGrath",
