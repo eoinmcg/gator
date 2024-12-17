@@ -1,0 +1,20 @@
+{
+  "name": "gator",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "esbuild --bundle src/index.js --outfile=public/game.js --servedir=public --sourcemap --serve=8008",
+    "dev": "npm start",
+    "build": "esbuild ./src/index.js --bundle --outfile=dist/g.min.js && node ./scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eoin McGrath",
+  "license": "ISC",
+  "meta_title": "GATOR",
+  "description": "Grumpy * Al's * Totally * Outstanding * Rescue. Jetpack, lazers and fluffy critters.",
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "tslib": "^2.8.1",
+    "zip-a-folder": "^3.1.8"
+  }
+}
