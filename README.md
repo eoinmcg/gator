@@ -4,7 +4,7 @@
 Entry for [LittleJS Jam 2024](https://itch.io/jam/littlejs-game-jam)
 
 By [@eoinmcg](https://twitter.com/eoinmcg)
- ![Banner](https://raw.githubusercontent.com/eoinmcg/gator/main/promo/title.png "Banner")
+ ![Banner](https://raw.githubusercontent.com/eoinmcg/gator/main/promo/cover.png "Banner")
 
 
 ## Play here
