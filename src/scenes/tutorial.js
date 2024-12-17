@@ -8,8 +8,6 @@ import Animal from "../sprites/animal";
 import Boat from "../sprites/boat";
 import Breakable from "../sprites/breakable";
 import Key from "../sprites/key";
-import Alert from "../sprites/alert";
-import Bubble from "../sprites/bubble";
 import drawSky from "../helpers/drawSky";
 import moveCamera from "../helpers/moveCamera";
 import palette from "../data/palette";

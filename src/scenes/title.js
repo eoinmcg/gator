@@ -59,35 +59,13 @@ export default class Title extends Scene {
     drawWeather['cloudsFast']();
     const wave = Math.sin(new Date().getTime() * 0.005);
 
-    let center = 960/2
-    let y = 100;
-    let off = 5;
-
-    let title = `G.A.T.O.R`;
-    let size = 12;
-
-    this.g.fonts.white.drawTextScreen(title, vec2(center + off, y), size, true);
-    this.g.fonts.white.drawTextScreen(title, vec2(center - off, y), size, true);
-    this.g.fonts.white.drawTextScreen(title, vec2(center, y - off), size, true);
-    this.g.fonts.white.drawTextScreen(title, vec2(center, y + off), size, true);
-    this.g.fonts.grass.drawTextScreen(title, vec2(center, y), size, true);
-
+    let center = 960/2;
 
     this.g.fonts.gray.drawTextScreen(`GRUMPY  AL'S  TOTALLY OUTSTANDING  RESCUE`, vec2(center, 220), 2.2, true);
-    // this.g.fonts.white.drawTextScreen(`STICK ${this.stick}`, vec2(center, 300), 2, true);
-
 
     this.renderImage();
 
-    let add = 0;
-    if (wave > 0) { add = 2; }
-
-    // drawTile(vec2(1.3, -6.65 - (this.active * 1.6)), vec2(1), tile(48 + add, vec2(8)))
-    // drawTile(vec2(2.3, -6.65 - (this.active * 1.6)), vec2(1), tile(80 + add, vec2(8)))
-    // drawTile(vec2(3.3, -6.65 - (this.active * 1.6)), vec2(1), tile(64 + add, vec2(8)))
-    // drawTile(vec2(5.3, -6.65 - (this.active * 1.6)), vec2(1), tile(11, vec2(8)))
-
-    drawTile(vec2(4.5, -6.65 - (this.active * 1.6)), vec2(1), tile(11 + add, vec2(8)))
+    drawTile(vec2(4.5, -6.65 - (this.active * 1.6)), vec2(1), tile(11, vec2(8)))
 
     this.options.forEach((o, i) => {
       let col = this.active === i ? 'orange' : 'white';
@@ -101,6 +79,17 @@ export default class Title extends Scene {
 
   renderImage() {
     let a = [0.2, 0.205,0.21];
-    drawTile(vec2(-7,-9),vec2(10),tile(0, 256, 2), undefined, 0);
+    drawTile(vec2(-7,-9),vec2(10),tile(0, 256, 2), undefined, a[0]);
+
+    let light = this.g.palette.red.col,
+        dark = this.g.palette.black.mk(0.5),
+    x = -11, y = 9, gap = 6, tileStart = 59;
+    for (let i = 0; i < 'GATOR'.length; i += 1) {
+      
+      drawTile(vec2(x + (i*gap),y-.3), vec2(4), tile(59+i, vec2(16)),
+      dark, 0, false)
+      drawTile(vec2(x + (i*gap),y), vec2(4), tile(59+i, vec2(16)),
+      light, 0, false)
+    }
   }
 }
