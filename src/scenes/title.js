@@ -77,6 +77,8 @@ export default class Title extends Scene {
         this.g.fonts.red.drawTextScreen(o[0], o[1], 3, false);
       }
     });
+
+
   }
 
   renderImage() {

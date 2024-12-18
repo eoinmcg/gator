@@ -103,8 +103,6 @@ export default class Tutorial extends Scene {
     });
 
 
-
-
   }
 
   update() {
@@ -115,6 +113,8 @@ export default class Tutorial extends Scene {
       this.goals.moved = true;
       this.g.sfx.play('score');
     }
+
+
 
     if (p1.shots > 0 && !this.goals.shot) {
       this.g.sfx.play('score');
@@ -190,12 +190,22 @@ export default class Tutorial extends Scene {
     drawRect(cameraPos.add(vec2(-14 + (x / 2),base+.25)), vec2(x, .2), palette.white.mk(.25));
     drawRect(cameraPos.add(vec2(-14 + (x / 2),base-.25)), vec2(x, .25), palette.black.mk(.2));
 
+    if (this.g.p1.jetpackEnergy < this.g.p1.jetpackEnergyMax) {
+      let col = 'grass', text = 'Jetpack Energy';
+      if (this.g.p1.jetpackEnergy < 0.5) {
+        col = 'pink';
+        text = 'Land to recharge!';
+
+      }
+      this.g.fonts.black.drawText(text, cameraPos.add(vec2(-7.7, base-.05)), .075, false);
+      this.g.fonts[col].drawText(text, cameraPos.add(vec2(-7.7, base+.15)), .075, false);
+      drawTile(cameraPos.add(vec2(-8.3, base)), vec2(1), tile(11, vec2(8)), this.g.palette[col].col, 0, true)
+
+    }
+
     const wave = Math.sin(new Date().getTime() * 0.005);
     drawSky('night', ['moon', 'clouds']);
 
-    if (this.g.p1.jetpackEnergy < this.g.p1.jetpackEnergyMax) {
-      console.log('JET PACK CHARGE')
-    }
 
     let white = this.g.fonts.white,
         gray = this.g.fonts.gray,
@@ -212,13 +222,6 @@ export default class Tutorial extends Scene {
       font.drawText(`X to shoot`, vec2(40, 7), .075, false);
     }
 
-    if (this.goals.entered && !this.baddie.destroyed) {
-      // white.drawText(`Shoot the drone`, vec2(26, 7.5), .075, false);
-    }
-
-    if (this.goals.entered && this.baddie.destroyed && this.bunny.caged) {
-      // white.drawText(`Fly to the crate`, vec2(26, 9.5), .075, false);
-    }
 
     drawTile(vec2(1, 1), vec2(1), tile(12, vec2(8)))
 
