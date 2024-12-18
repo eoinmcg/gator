@@ -45,6 +45,11 @@
                  "value":3
                 }, 
                 {
+                 "name":"title",
+                 "type":"string",
+                 "value":"Up The Chimney"
+                }, 
+                {
                  "name":"warning",
                  "type":"string",
                  "value":""

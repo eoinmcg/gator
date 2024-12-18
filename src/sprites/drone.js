@@ -44,6 +44,9 @@ export default class Drone extends Sprite {
   }
 
   collideWithObject(o) {
+
+    if (o.constructor.name === 'Animal') { return; }
+
     this.angry = true;
     this.pos.x += o.velocity.x / 3;
     this.velocity.x *= 2;

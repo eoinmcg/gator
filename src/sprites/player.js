@@ -40,7 +40,6 @@ export default class Player extends Sprite {
     this.hurtTimerVal = 1.2;
     this.startPos = pos.copy();
 
-    this.lives = 2;
     this.keys = 0;
 
     this.mirror = this.getPosFromXCenter() < 0;
@@ -273,11 +272,11 @@ export default class Player extends Sprite {
 
   loseLife(fire = false) {
     if (this.dead) return;
-    this.lives -= 1;
+    this.g.lives -= 1;
     this.g.sfx.play('hurt', this.pos);
     this.flash(2, fire ? new Color(1,0,0,0) : false);
 
-    if (this.lives < 0) {
+    if (this.g.lives < 0) {
       this.dead = true;
     }
   }

@@ -17,6 +17,7 @@
    <property name="sea" value="true"/>
    <property name="sky" value="night"/>
    <property name="time" type="int" value="3"/>
+   <property name="title" value="House of fun"/>
    <property name="warning" value=""/>
    <property name="weather" value=""/>
   </properties>

@@ -15,6 +15,7 @@
    <property name="save" type="int" value="100"/>
    <property name="sky" value="dusk"/>
    <property name="time" type="int" value="3"/>
+   <property name="title" value="Piece Of Cake!"/>
    <property name="warning" value=""/>
    <property name="weather" value=""/>
   </properties>

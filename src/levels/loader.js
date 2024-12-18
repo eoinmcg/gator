@@ -4,6 +4,7 @@ import level1 from './level1.json';
 import level2 from './level2.json';
 import level3 from './level3.json';
 import level4 from './level4.json';
+import level5 from './level5.json';
 
 import spriteAtlas from './spriteAtlas.js';
 
@@ -16,6 +17,7 @@ export default class Loader {
       level2,
       level3,
       level4,
+      level5,
     ]
     this.numLevels = this.levels.length - 1; // exclude tutorial
 

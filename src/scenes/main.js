@@ -126,6 +126,8 @@ export default class Main extends Scene {
 
     if (this.g.gameOver && this.restartTimer.elapsed()
      && (keyIsDown('KeyX') || gamepadIsDown(2))) {
+      this.g.lives = 2;
+      this.g.score = 0;
       this.g.sceneManager.changeScene('Main');
     }
 
@@ -166,7 +168,7 @@ export default class Main extends Scene {
       ? 'red' : 'white';
     this.g.fonts.black.drawText(`${this.timeLeft.mins}:${this.timeLeft.secs}`, cameraPos.add(vec2(0,11.37)), .15, true);
     this.g.fonts[col].drawText(`${this.timeLeft.mins}:${this.timeLeft.secs}`, cameraPos.add(vec2(0,11.5)), .15, true);
-    for (let lives = 0; lives < Game.p1.lives; lives += 1) {
+    for (let lives = 0; lives < Game.lives; lives += 1) {
       drawTile(cameraPos.add(vec2((lives * 1.3) - 13.5 ,9.4)),
         vec2(1),
         tile(34, vec2(8))

@@ -35,6 +35,11 @@
                  "value":3
                 }, 
                 {
+                 "name":"title",
+                 "type":"string",
+                 "value":"Piece Of Cake!"
+                }, 
+                {
                  "name":"warning",
                  "type":"string",
                  "value":""

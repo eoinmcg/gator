@@ -69,6 +69,13 @@ const styles = {
     dark: 'gunmetal2',
     streak: 10,
     stops: [1.8, 3]
+  },
+  title: {
+    light: 'gray2',
+    med: 'gunmetal',
+    dark: 'gunmetal2',
+    streak: 10,
+    stops: [1.8, 3]
   }
 }
 

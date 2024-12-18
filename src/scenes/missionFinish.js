@@ -32,7 +32,6 @@ export default class MissionFinish extends Scene {
       this.timers[name].set(i * 1);
     });
 
-    // use yer atlas, numpty!
     this.sprites = {
       'Drone': 21,
       'Creeper': 22,
