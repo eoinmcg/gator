@@ -137,8 +137,5 @@ class EnemyLazer extends Sprite {
       this.particles.gunhit(this.pos, this.g.palette.red.col);
       this.destroy();
     }
-
-
-    console.log(o);
   }
 }

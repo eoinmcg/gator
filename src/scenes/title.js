@@ -48,6 +48,7 @@ export default class Title extends Scene {
       this.g.sfx.play('explosion');
       this.g.lives = 2;
       this.g.score = 0;
+      this.g.levelNum = 1;
       this.g.sceneManager.changeScene(scene);
     }
 
