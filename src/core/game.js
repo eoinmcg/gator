@@ -18,8 +18,8 @@ const Game = {
   p1: null,
   gameOver: false,
   level: null,
-  levelNum: 5,
-  startScene: 'MissionStart',
+  levelNum: 1,
+  startScene: 'Splash',
   images: ['sprites.png', 'tiles.png', 'splash3.png']
 };
 
