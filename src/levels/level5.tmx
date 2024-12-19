@@ -11,7 +11,7 @@
  <layer id="3" name="BG" width="58" height="80">
   <properties>
    <property name="music" value="mission2"/>
-   <property name="objective" value="kick butt,avoid lazers"/>
+   <property name="objective" value="Get out alive!"/>
    <property name="save" type="int" value="100"/>
    <property name="sky" value="stormy"/>
    <property name="time" type="int" value="3"/>

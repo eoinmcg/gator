@@ -57,7 +57,7 @@ export default class Title extends Scene {
 
   render() {
 
-    drawSky('day');
+    drawSky('night');
     drawWeather['cloudsFast']();
     const wave = Math.sin(new Date().getTime() * 0.005);
 
@@ -82,7 +82,7 @@ export default class Title extends Scene {
   }
 
   renderImage() {
-    let a = [0.2, 0.205,0.21];
+    let a = [0, 0.2, 0.205,0.21];
     drawTile(vec2(-7,-9),vec2(10),tile(0, 256, 2), undefined, a[0]);
 
     let light = this.g.palette.red.col,

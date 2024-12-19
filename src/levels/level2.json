@@ -22,7 +22,7 @@
                 {
                  "name":"objective",
                  "type":"string",
-                 "value":"Release the parrots!"
+                 "value":"Release the birds!,Endangered Parrots!"
                 }, 
                 {
                  "name":"save",
@@ -52,7 +52,7 @@
                 {
                  "name":"warning",
                  "type":"string",
-                 "value":""
+                 "value":"Endangered Parrots"
                 }, 
                 {
                  "name":"weather",

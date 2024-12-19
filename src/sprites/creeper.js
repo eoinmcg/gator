@@ -70,6 +70,12 @@ export default class Creeper extends Sprite {
     // drawLine(this.pos, this.fieldOfVision, .1, this.g.palette.pink.mk(.5));
   }
 
+  collideWithObject(o) {
+    const name = o.constructor.name;
+    if (name === 'Player') {
+      this.destroy();
+    }
+  }
 
   takeDamage(o) {
     this.health -= .25;
@@ -79,11 +85,16 @@ export default class Creeper extends Sprite {
 
     if (this.health > 0) { return; }
 
-    this.particles.explode(this.pos, this.size);
     this.destroy();
+  }
+
+  destroy() {
+    super.destroy();
+    this.particles.explode(this.pos, this.size);
     this.makeDebris(this.pos, 'white', 5, .3, 0, 1);
     this.g.sfx.play('explosion', this.pos);
     this.g.achieved.kills.push(this.type);
+
   }
 
 }

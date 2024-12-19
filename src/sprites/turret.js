@@ -76,6 +76,12 @@ export default class Turret extends Sprite {
     }
   }
 
+  collideWithObject(o) {
+    let name = o.constructor.name;
+    if (name === 'Animal') { return; }
+    if (name === 'Player') { this.destroy(); }
+  }
+
   destroy() {
     this.particles.explode(this.pos, this.size);
     this.makeDebris(this.pos, 'white', 5, .3, 0, 1);

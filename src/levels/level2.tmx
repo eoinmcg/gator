@@ -12,13 +12,13 @@
   <properties>
    <property name="extras" value="stars,sunset"/>
    <property name="music" value="mission"/>
-   <property name="objective" value="Release the parrots!"/>
+   <property name="objective" value="Release the birds!,Endangered Parrots!"/>
    <property name="save" type="int" value="100"/>
    <property name="sea" value="true"/>
    <property name="sky" value="dusk"/>
    <property name="time" type="int" value="3"/>
    <property name="title" value="Up The Chimney"/>
-   <property name="warning" value=""/>
+   <property name="warning" value="Endangered Parrots"/>
    <property name="weather" value=""/>
   </properties>
   <data encoding="csv">

@@ -35,6 +35,11 @@
                  "value":3
                 }, 
                 {
+                 "name":"title",
+                 "type":"string",
+                 "value":"Lava n Lazers"
+                }, 
+                {
                  "name":"weather",
                  "type":"string",
                  "value":"snow"

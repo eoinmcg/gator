@@ -54,6 +54,7 @@ export default class Main extends Scene {
     this.escapeAlert = false;
 
     this.fireTiles = Game.tileLayer.cache.fire;
+    this.alert = undefined;
 
     this.g.achieved = {
       time: 0,
@@ -94,14 +95,14 @@ export default class Main extends Scene {
 
     if (this.g.p1.dead && !this.g.gameOver) {
       this.g.gameOver = true;
-      new Alert('GAME OVER', this.g.fonts, 5, true, 'red');
+      this.alert = new Alert('GAME OVER', this.g.fonts, 5, true, 'red');
       this.restartTimer = new Timer();
       this.restartTimer.set(3);
     }
 
     if (this.g.saved === this.g.animals && !this.escapeAlert) {
       this.escapeAlert = true;
-      new Alert('GET TO THE BOAT!', this.g.fonts, 5, false);
+      this.alert = new Alert('GET TO THE BOAT!', this.g.fonts, 5, false);
       this.g.sfx.play('alert');
     }
 
@@ -112,7 +113,7 @@ export default class Main extends Scene {
     }
 
     if (this.boat.isExiting && (this.boat.pos.x < 7 || this.boat.pos.x > 48) && !this.g.levelComplete) {
-      new Alert('LEVEL COMPLETE', this.g.fonts, 5, false);
+      this.alert = new Alert('LEVEL COMPLETE', this.g.fonts, 5, false);
       this.g.sfx.play('alert');
       this.g.levelComplete = true;
       this.g.p1.changeAnim('victory');
@@ -211,7 +212,7 @@ export default class Main extends Scene {
     if (this.timeLeft.raw < 0 && this.levelTimer) {
       this.levelTimer.unset();
       this.g.music.stop();
-      new Alert('TIME UP!', this.g.fonts, 0, true, 'red');
+      this.alert = new Alert('TIME UP!', this.g.fonts, 0, true, 'red');
       // setPaused(true);
       this.restartTimer.set(3);
       this.g.p1.dead = true;

@@ -125,7 +125,7 @@ const drawWeather = {
             ((random.float(w)+time*speed)%w-extraSpace),
             (random.float(h)));
 
-        drawCloud(screenPos.x, screenPos.y, size, 'sky2');
+        drawCloud(screenPos.x, screenPos.y, size, 'navy');
     }
 
   },

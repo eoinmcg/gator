@@ -4,15 +4,12 @@ export default class MissionStart extends Scene {
 
   enter(Game) {
     this.g = Game;
-
-
     Game.levelSize = vec2();
 
     const levelLoader = Game.Loader;
     this.props = levelLoader.loadProps(this.g.levelNum);
     if (!this.props) {
       this.g.sceneManager.changeScene('Victory');
-      console.log('OUTTA HERE!', this.props, this.g.levelNum);
       return;
     }
 
@@ -20,6 +17,7 @@ export default class MissionStart extends Scene {
     this.change = false;
 
     this.text = this.props.objective.toUpperCase().split(',');
+    console.log(this.text)
 
     this.g.music.play('intro');
 
@@ -78,8 +76,11 @@ export default class MissionStart extends Scene {
     this.g.fonts.red.drawTextScreen(this.titleTyped, vec2(280, 200), 6, false);
 
     this.lines.forEach((line, i) => {
-      // font.drawText(line, cameraPos.add(vec2(-3, 3 - ((i + 1) * 2))), .1, false);
-      this.g.fonts.white.drawTextScreen(line, vec2(500, 300 + (i * 50)), 3, true);
+      let col = i > 0 ? 'pink' : 'white';
+      if (i > 0 && wave < 0) {
+        col = 'orange';
+      }
+      this.g.fonts[col].drawTextScreen(line, vec2(500, 300 + (i * 50)), 3, true);
     })
 
   }
