@@ -12,6 +12,13 @@ export default class Victory extends Scene {
     this.skipTimer = new Timer();
     this.skipTimer.set(5);
 
+    this.formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      trailingZeroDisplay: 'stripIfInteger'
+    });
+    this.score = this.formatter.format(this.g.score);
+
   }
 
   update() {
@@ -46,6 +53,9 @@ export default class Victory extends Scene {
     }
 
     drawTile(vec2(0,-9), vec2(3), tile(8, vec2(8)), undefined, 0, wave > 0);
+
+    this.g.fonts.black.drawTextScreen(this.score, vec2(480, 755), 5, true);
+    this.g.fonts.yellow.drawTextScreen(this.score, vec2(480, 750), 5, true);
   }
 
 }

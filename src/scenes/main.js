@@ -43,7 +43,6 @@ export default class Main extends Scene {
     this.sky = level.props.sky || 'day';
     this.skyExtras = level.props.extras || false
     this.skyExtras = (this.skyExtras) ? this.skyExtras.split(',') : [];
-    console.log(this.skyExtras);
     this.weather = level.props.weather || false;
 
     this.g.animals = 0;
@@ -149,7 +148,6 @@ export default class Main extends Scene {
     }
 
     if (this.g.gameOver && this.restartTimer.elapsed()) {
-      console.log("OK");
       this.g.fonts['black'].drawText(`X TO RESTART`, cameraPos.add(vec2(0,1.3)), .15, true);
       this.g.fonts['white'].drawText(`X TO RESTART`, cameraPos.add(vec2(0,1.5)), .15, true);
 

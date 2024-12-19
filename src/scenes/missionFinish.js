@@ -1,4 +1,5 @@
 import Scene from "./scene";
+import Particles from '../helpers/particles';
 
 export default class MissionFinish extends Scene {
 
@@ -24,13 +25,15 @@ export default class MissionFinish extends Scene {
     this.lineInterval = 1;
     this.lineTimer = null;
 
-    let timers = ['Time', 'Saved', 'Kills', 'Lost'];
+    let timers = ['Time', 'Saved', 'Kills'];
     this.renderFrags = [];
     this.timers = {};
     timers.forEach((name, i) => {
       this.timers[name] = new Timer();
       this.timers[name].set(i * 1);
     });
+
+    this.displayScore = this.g.score;
 
     this.sprites = {
       'Drone': 21,
@@ -40,6 +43,12 @@ export default class MissionFinish extends Scene {
       'Bunny': 64,
       'Leopard': 80,
     }
+
+    this.formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      trailingZeroDisplay: 'stripIfInteger'
+    });
 
     // let test = '{"time":"02:06","kills":["Creeper","Drone","Creeper","Drone","Creeper","Turret"],"saved":["Bunny","Leopard","Parrot","Parrot","Bunny"],"lost":[]}'
     // this.g.achieved = JSON.parse(test);
@@ -51,7 +60,7 @@ export default class MissionFinish extends Scene {
   update() {
     super.update();
 
-    if (this.skip) {
+    if (this.skip && this.g.score === this.displayScore) {
       this.g.sceneManager.changeScene('MissionStart');
     }
 
@@ -61,8 +70,19 @@ export default class MissionFinish extends Scene {
         delete this.timers[timer];
         this.renderFrags.push(timer);
         this.g.sfx.play('bounce');
+        this.updateScore(timer);
       }
     });
+
+    if (this.displayScore < this.g.score - 10) {
+      this.displayScore += 10;
+      this.g.sfx.play('score');
+      Particles.score();
+    } else if (this.displayScore < this.g.score) {
+      this.displayScore += 1;
+      this.g.sfx.play('score');
+      Particles.score();
+    }
 
   }
 
@@ -78,6 +98,9 @@ export default class MissionFinish extends Scene {
     this.renderFrags.forEach((part, i) => {
         this[`render${part}`](y+(i*70), wave);
     })
+
+    let score = this.formatter.format(this.displayScore);
+    this.g.fonts.yellow.drawTextScreen(`${score}`, vec2(480, 700), 5, true);
 
   }
 
@@ -119,6 +142,20 @@ export default class MissionFinish extends Scene {
       let col = this.g.palette.red.mk(1);
       drawTile(pos, vec2(1), tile(img, 8), col, 0, true);
     });
+  }
+
+  updateScore(type) {
+    type = type.toLowerCase();
+    let achieved = this.g.achieved[type];
+    if (type === 'time') {
+      const time = achieved.split(':');
+      const secs = (parseInt(time[0], 10) * 60) + parseInt(time[1], 10);
+      this.g.score += secs;
+    } else if (type === 'saved') {
+      this.g.score += achieved.length * 50;
+    } else if (type === 'kills') {
+      this.g.score += achieved.length * 10;
+    }
   }
 
 }

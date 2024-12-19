@@ -17,7 +17,6 @@ export default class MissionStart extends Scene {
     this.change = false;
 
     this.text = this.props.objective.toUpperCase().split(',');
-    console.log(this.text)
 
     this.g.music.play('intro');
 

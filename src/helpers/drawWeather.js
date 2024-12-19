@@ -114,7 +114,7 @@ const drawWeather = {
         let size = random.float(3, 1);
         let speed = random.float() < .9 ? random.float(5) : random.float(99,9);
         // speed = random.float(5);
-        speed *= size * 5;
+        speed *= size * 15;
 
         const extraSpace = 200;
         const w = mainCanvas.width+2*extraSpace, h = mainCanvas.height+2*extraSpace;
@@ -125,7 +125,8 @@ const drawWeather = {
             ((random.float(w)+time*speed)%w-extraSpace),
             (random.float(h)));
 
-        drawCloud(screenPos.x, screenPos.y, size, 'navy');
+
+        drawCloud(mainCanvas.width - screenPos.x, screenPos.y, size, 'navy');
     }
 
   },

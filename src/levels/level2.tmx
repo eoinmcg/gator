@@ -16,7 +16,7 @@
    <property name="save" type="int" value="100"/>
    <property name="sea" value="true"/>
    <property name="sky" value="dusk"/>
-   <property name="time" type="int" value="3"/>
+   <property name="time" type="int" value="2"/>
    <property name="title" value="Up The Chimney"/>
    <property name="warning" value="Endangered Parrots"/>
    <property name="weather" value=""/>

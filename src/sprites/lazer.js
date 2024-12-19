@@ -76,7 +76,6 @@ export default class Lazer extends Sprite {
   }
 
   collideWithObject(o) {
-    this.g.score += 1;
 
     if (o.constructor.name === 'Boat') { return; }
     if (o.constructor.name === 'Lazer') { return; }
