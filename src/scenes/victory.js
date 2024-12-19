@@ -23,27 +23,25 @@ export default class Victory extends Scene {
 
   render() {
     super.update();
+    const random = new RandomGenerator(2);
+    drawSky('dawn');
 
+    for (let i = -14; i < 20; i += 1) {
+      drawTile(vec2(i*2, -11.5), vec2(2), tile(35, 8, 1));
+    }
 
-      const random = new RandomGenerator(2);
-      drawSky('dawn');
-
-      for (let i = -14; i < 20; i += 1) {
-        drawTile(vec2(i*2, -11.5), vec2(2), tile(35, 8, 1));
-      }
-
-      const wave = Math.sin(new Date().getTime() * 0.005);
-      outlineText({
-        pos: cameraPos.add(vec2(0,2.7)),
-        fonts: this.g.fonts,
-        text: 'YOU DA BESTEST!',
-        size: 0.2,
-      });
+    const wave = Math.sin(new Date().getTime() * 0.005);
+    outlineText({
+      pos: cameraPos.add(vec2(0,2.7)),
+      fonts: this.g.fonts,
+      text: 'U DA BESTEST!',
+      size: 0.2,
+    });
 
     for (let i = 10; i--;) {
       let size = random.float(3, 1);
-        const pos = vec2(
-            (random.float(8,-8)), (random.float(8,-8)));
+      const pos = vec2(
+        (random.float(8,-8)), (random.float(8,-8)));
       drawTile(pos, vec2(size+wave), tile(34, vec2(8)));
     }
 
