@@ -43,7 +43,7 @@ export default class Title extends Scene {
     if (this.active < 0) { this.active = this.options.length - 1; }
     if (this.active > this.options.length - 1) { this.active = 0; }
 
-    if (keyWasPressed('KeyX') || gamepadWasPressed(0) || gamepadWasPressed(2)) {
+    if (keyWasPressed('Space') || keyWasPressed('KeyX') || gamepadWasPressed(0) || gamepadWasPressed(2)) {
       let scene = this.options[this.active][2];
       this.g.sfx.play('explosion');
       this.g.lives = 2;

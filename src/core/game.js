@@ -46,6 +46,13 @@ if (window.BUILD) {
   setShowSplashScreen(true);
 } else {
   window.G = Game;
+  const params = Object.fromEntries(new URLSearchParams(location.search))
+  if(params.levelNum) {
+    Game.levelNum = parseInt(params.levelNum, 10);
+  }
+  if(params.startScene) {
+    Game.startScene = params.startScene;
+  }
 }
 
 export default Game;

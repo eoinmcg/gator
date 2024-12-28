@@ -50,10 +50,10 @@ export default class MissionFinish extends Scene {
       trailingZeroDisplay: 'stripIfInteger'
     });
 
-    // let test = '{"time":"02:06","kills":["Creeper","Drone","Creeper","Drone","Creeper","Turret"],"saved":["Bunny","Leopard","Parrot","Parrot","Bunny"],"lost":[]}'
-    // this.g.achieved = JSON.parse(test);
-    // this.g.achieved.lost = ['Bunny', 'Parrot', 'Leopard'];
-    // console.log('TEST: ', this.g.achieved);
+    let test = '{"time":"02:06","kills":["Creeper","Drone","Creeper","Drone","Creeper","Turret"],"saved":["Bunny","Leopard","Parrot","Parrot","Bunny"],"lost":[]}'
+    this.g.achieved = JSON.parse(test);
+    this.g.achieved.lost = ['Bunny', 'Parrot', 'Leopard'];
+    console.log('TEST: ', this.g.achieved);
 
   }
 

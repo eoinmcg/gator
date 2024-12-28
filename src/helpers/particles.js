@@ -61,9 +61,9 @@ const Particles = {
           tile(14,8),                      // tileInfo
           color, color2,           // colorStartA, colorStartB
           color.scale(1,0), color2.scale(1,0), // colorEndA, colorEndB
-          1, .5, .5, .2, 0.00,  // time, sizeStart, sizeEnd, speed, angleSpeed
-          1, 0, 0.0, PI,   // damping, angleDamping, gravityScale, cone
-          1, .43, 0, 0        // fadeRate, randomness, collide, additive
+          1, .75, 1, .2, 0.00,  // time, sizeStart, sizeEnd, speed, angleSpeed
+          1, 1, 0.0, PI,   // damping, angleDamping, gravityScale, cone
+          .1, .43, 0, 0        // fadeRate, randomness, collide, additive
       );
   },
 
@@ -76,9 +76,9 @@ const Particles = {
         tile(0,8),                      // tileInfo
         color, color,           // colorStartA, colorStartB
         color.scale(1,0), color.scale(1,0), // colorEndA, colorEndB
-        .1, .5, .5, .2, 0,  // time, sizeStart, sizeEnd, speed, angleSpeed
+        .1, .75, .75, .2, 0,  // time, sizeStart, sizeEnd, speed, angleSpeed
         .99, .95, 0, PI,   // damping, angleDamping, gravityScale, cone
-        .1, 0, 0, 0        // fadeRate, randomness, collide, additive
+        -1, 0, 0, 0        // fadeRate, randomness, collide, additive
     );
   },
 

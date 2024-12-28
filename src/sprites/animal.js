@@ -37,7 +37,7 @@ export default class Animal extends Sprite {
     this.cryTimer = new Timer();
     this.cryTimer.set(rand(1,5));
 
-    this.followSpeed = rand(0.1, 0.25);
+    this.followSpeed = rand(0.15, 0.25);
     this.font = new FontImage;
 
   }

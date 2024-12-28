@@ -74,6 +74,7 @@ export default class Player extends Sprite {
     this.move.x *= .15;
     this.move.y *= .15;
     this.move.y = 0;
+    this.inBoat = false;
 
 
     if (this.move.x !== 0 && !this.boost) {
@@ -91,7 +92,8 @@ export default class Player extends Sprite {
 
     this.pos = this.pos.add(this.move);
     this.pos.x = clamp(this.pos.x, -2, this.level[0].length + 5);
-    this.velocity.y = clamp(this.velocity.y, -0.6, 0.2);
+    // this.velocity.y = clamp(this.velocity.y, -0.6, 0.2);
+    this.velocity.y = clamp(this.velocity.y, -0.4, 0.2);
 
     super.update();
     this.handleBoost();
@@ -99,7 +101,7 @@ export default class Player extends Sprite {
   }
 
   handleShoot() {
-    this.shoot  = keyIsDown('KeyX') || gamepadIsDown(2);
+    this.shoot  = keyIsDown('Space') || keyIsDown('KeyX') || gamepadIsDown(2);
     if (this.shoot && this.shootTimer.elapsed()) {
       this.shots += 1;
       new Lazer(this.pos, this.mirror, this.g);
@@ -112,7 +114,8 @@ export default class Player extends Sprite {
   }
 
   handleBoost() {
-    this.boost  = keyIsDown('KeyZ') || gamepadIsDown(0) || gamepadIsDown(1);
+    this.boost  = keyIsDown('KeyZ') || keyIsDown('ArrowUp') || gamepadIsDown(0) || gamepadIsDown(1);
+    console.log(this.jetpackEnergy, this.boost, this.onGround, this.inBoat);
     if (this.boost && this.jetpackEnergy > 0) {
       if (this.velocity.y < 0) this.velocity.y = 0;
       this.velocity.y += 0.02;
