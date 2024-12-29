@@ -13,6 +13,8 @@ import drawSky from "../helpers/drawSky";
 import drawWeather from "../helpers/drawWeather";
 import moveCamera from "../helpers/moveCamera";
 
+import postScore from "../helpers/postScore";
+
 
 const Sprites = { Player, Drone, Creeper, Turret, Animal, Breakable, Boat, Key };
 
@@ -94,9 +96,11 @@ export default class Main extends Scene {
 
     if (this.g.p1.dead && !this.g.gameOver) {
       this.g.gameOver = true;
+      postScore(this.g.score, this.g);
       this.alert = new Alert('GAME OVER', this.g.fonts, 5, true, 'red');
       this.restartTimer = new Timer();
       this.restartTimer.set(3);
+      // post score
     }
 
     if (this.g.saved === this.g.animals && !this.escapeAlert) {
@@ -211,10 +215,10 @@ export default class Main extends Scene {
       this.levelTimer.unset();
       this.g.music.stop();
       this.alert = new Alert('TIME UP!', this.g.fonts, 0, true, 'red');
-      // setPaused(true);
       this.restartTimer.set(3);
       this.g.p1.dead = true;
       this.g.gameOver = true;
+      postScore(this.g.score, this.g);
     }
   }
 }

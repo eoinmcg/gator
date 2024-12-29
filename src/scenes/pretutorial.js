@@ -13,8 +13,9 @@ export default class Pretutorial extends Scene {
     this.tutor = new Tutor(this.g);
     this.tutor.speak(this.lines.shift());
 
+    this.speechTime = 3;
     this.nextSpeech = new Timer();
-    this.nextSpeech.set(5);
+    this.nextSpeech.set(this.speechTime);
 
     this.complete = false;
 
@@ -30,7 +31,7 @@ export default class Pretutorial extends Scene {
 
     if (this.nextSpeech.elapsed() && this.lines.length > 0) {
       this.tutor.speak(this.lines.shift());
-      this.nextSpeech.set(5);
+      this.nextSpeech.set(this.speechTime);
     } else if (this.nextSpeech.elapsed() && !this.complete) {
       this.complete = true;
       this.g.sceneManager.changeScene('Tutorial');

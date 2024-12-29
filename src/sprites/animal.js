@@ -38,6 +38,7 @@ export default class Animal extends Sprite {
     this.cryTimer.set(rand(1,5));
 
     this.followSpeed = rand(0.15, 0.25);
+    // this.followSpeed = 0.1;
     this.font = new FontImage;
 
   }
@@ -54,8 +55,10 @@ export default class Animal extends Sprite {
       this.help = new Help(this.pos.add(vec2(0,1)), this.g);
     }
 
+    this.dist = this.pos.distance(this.g.p1.pos);
+
     if (this.inBoat) {
-      this.pos.x = this.inBoat.pos.x + (this.passenger * 0.75) - 1;
+      this.pos.x = this.inBoat.pos.x + (this.passenger * 0.5) - 1;
       this.pos.y = this.inBoat.pos.y + 0.5;
       return;
     }
@@ -81,6 +84,10 @@ export default class Animal extends Sprite {
           vec2(1+.5),
           tile(35, vec2(8,8))
         );
+    } else if(!this.inBoat && this.dist > 15) {
+      let x = clamp(this.pos.x, cameraPos.x - 14, cameraPos.x + 14),
+          y = clamp(this.pos.y, cameraPos.y - 12, cameraPos.y + 12);
+      drawTile(vec2(x, y), vec2(1), tile(46,vec2(8)));
     }
   }
 

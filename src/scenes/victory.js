@@ -1,6 +1,7 @@
 import Scene from "./scene";
 import drawSky from "../helpers/drawSky";
 import outlineText from "../helpers/outlineText";
+import postScore from "../helpers/postScore";
 
 export default class Victory extends Scene {
 
@@ -18,6 +19,7 @@ export default class Victory extends Scene {
       trailingZeroDisplay: 'stripIfInteger'
     });
     this.score = this.formatter.format(this.g.score);
+    postScore(this.g.score, this.g);
 
   }
 

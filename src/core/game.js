@@ -7,6 +7,13 @@ import Music from '../data/music.js';
 
 import colorFont from "../helpers/colorFont.js";
 
+import { newgroundsInit } from "../lib/newgrounds.js";
+import keys from "../data/keys.js";
+
+let newgrounds = newgroundsInit(keys.AppID, keys.EncryptionKey);
+let scoreboard = newgrounds.getScores(keys.ScoreBoard);
+console.log(scoreboard);
+
 const Game = {
   W: 960,
   H: 800,
@@ -20,8 +27,12 @@ const Game = {
   level: null,
   levelNum: 1,
   startScene: 'Splash',
-  images: ['sprites.png', 'tiles.png', 'splash3.png']
+  images: ['sprites.png', 'tiles.png', 'splash3.png'],
+  isNewgrounds: window.location.hostname === 'uploads.ungrounded.net',
+  scoreboard: scoreboard.result.data.scores,
+  ng: newgrounds
 };
+
 
 let font = new FontImage;
 font.image.onload = () => {
@@ -46,6 +57,7 @@ if (window.BUILD) {
   setShowSplashScreen(true);
 } else {
   window.G = Game;
+  window.NG = newgrounds;
   const params = Object.fromEntries(new URLSearchParams(location.search))
   if(params.levelNum) {
     Game.levelNum = parseInt(params.levelNum, 10);

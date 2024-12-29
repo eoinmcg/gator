@@ -3,7 +3,6 @@ import Collected from "./collected";
 
 export default class Key extends Sprite {
 
-
   constructor(pos, game) {
     super(pos.add(vec2(0.5,0)), vec2(1), tile(100, 8));
     this.g = game;
@@ -27,5 +26,4 @@ export default class Key extends Sprite {
       this.destroy();
     }
   }
-
   }

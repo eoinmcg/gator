@@ -93,7 +93,7 @@ export default class Player extends Sprite {
     this.pos = this.pos.add(this.move);
     this.pos.x = clamp(this.pos.x, -2, this.level[0].length + 5);
     // this.velocity.y = clamp(this.velocity.y, -0.6, 0.2);
-    this.velocity.y = clamp(this.velocity.y, -0.4, 0.2);
+    this.velocity.y = clamp(this.velocity.y, -0.44, 0.22);
 
     super.update();
     this.handleBoost();
@@ -115,7 +115,6 @@ export default class Player extends Sprite {
 
   handleBoost() {
     this.boost  = keyIsDown('KeyZ') || keyIsDown('ArrowUp') || gamepadIsDown(0) || gamepadIsDown(1);
-    console.log(this.jetpackEnergy, this.boost, this.onGround, this.inBoat);
     if (this.boost && this.jetpackEnergy > 0) {
       if (this.velocity.y < 0) this.velocity.y = 0;
       this.velocity.y += 0.02;

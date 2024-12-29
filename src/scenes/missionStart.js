@@ -33,6 +33,7 @@ export default class MissionStart extends Scene {
     this.lineInterval = 1;
     this.lineTimer = null;
 
+    //post score
   }
 
   update() {
