@@ -69,7 +69,6 @@ export default class Main extends Scene {
     }
 
     level.objects.sprites.forEach((sprite) => {
-      console.log(sprite[0], sprite);
       new Sprites[sprite[0]](vec2(sprite[1], sprite[2]), Game, sprite[3]);
       if (sprite[0] === 'Animal') {
         this.g.animals += 1;

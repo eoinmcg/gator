@@ -8,8 +8,8 @@ let medalData = [
     id: 0
   },
   {
-    name: 'Speedy!',
-    info: 'Complete rescue faster than 2:45',
+    name: 'Speedy',
+    info: 'Complete a mission faster than 2:45',
     icon: '⚡',
     id: 1
   },
@@ -32,7 +32,7 @@ let medalData = [
     id: 4
   },
   {
-    name: 'Hot Stuff',
+    name: 'Hawt',
     info: 'Go for a swim in lava',
     icon: '🔥',
     id: 5
