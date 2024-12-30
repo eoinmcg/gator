@@ -28,6 +28,10 @@ class NewgroundsMedal extends Medal
     unlock()
     {
         super.unlock();
+        if (this.unlocked) {
+          console.log('MEDAL ALREADY UNLOCKED');
+          // return;
+        }
         this.g.sfx.play('medal');
         newgrounds && newgrounds.unlockMedal(this.id);
     }
@@ -42,10 +46,8 @@ class NewgroundsMedal extends Medal
         // draw containing rect and clip to that region
         context.save();
         context.beginPath();
-        // context.fillStyle = new Color(.9,.9,.9).toString();
-        // context.strokeStyle = new Color(0,0,0).toString();
-        context.fillStyle = this.g.palette.grass2.col;
-        context.strokeStyle = this.g.palette.grass.col;
+        context.fillStyle = this.g.palette.forest2.col;
+        context.strokeStyle = this.g.palette.white2.col;
         context.lineWidth = 3;
         context.rect(x, y, width, medalDisplaySize.y);
         context.fill();
@@ -57,9 +59,9 @@ class NewgroundsMedal extends Medal
         this.renderIcon(vec2(x+medalDisplayIconSize/2, y+medalDisplaySize.y/2));
 
         const pos = vec2(x+medalDisplayIconSize+30, y+18);
-        this.g.fonts.white.drawTextScreen(this.name, pos, 3);
+        this.g.fonts.white.drawTextScreen(this.name, pos, 3.3);
         pos.y += 32;
-        this.g.fonts.white.drawTextScreen(this.description, pos, 1.8);
+        this.g.fonts.white.drawTextScreen(this.description, pos, 2);
         context.restore();
   }
 }

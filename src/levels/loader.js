@@ -120,7 +120,6 @@ export default class Loader {
         if (val !== 0) {
           y += 0.5
           let sprite = spriteAtlas[val]
-          console.log(val, sprite);
           if (sprite === 'Player') {
             player = [x, y];
           } else {
