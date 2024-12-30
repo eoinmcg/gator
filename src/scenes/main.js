@@ -6,6 +6,7 @@ import Turret from "../sprites/turret";
 import Animal from "../sprites/animal";
 import Boat from "../sprites/boat";
 import Breakable from "../sprites/breakable";
+import Donut from "../sprites/donut";
 import Key from "../sprites/key";
 import Alert from "../sprites/alert";
 import Bubble from "../sprites/bubble";
@@ -16,7 +17,7 @@ import moveCamera from "../helpers/moveCamera";
 import postScore from "../helpers/postScore";
 
 
-const Sprites = { Player, Drone, Creeper, Turret, Animal, Breakable, Boat, Key };
+const Sprites = { Player, Drone, Creeper, Turret, Animal, Breakable, Boat, Key, Donut };
 
 export default class Main extends Scene {
   enter(Game) {
@@ -48,8 +49,11 @@ export default class Main extends Scene {
     this.weather = level.props.weather || false;
 
     this.g.animals = 0;
+    this.g.baddies = 0;
     this.g.saved = 0;
     this.g.inBoat = 0;
+    this.killer = false;
+    this.pacifist = false;
 
     this.g.levelComplete = false;
     this.escapeAlert = false;
@@ -65,6 +69,7 @@ export default class Main extends Scene {
     }
 
     level.objects.sprites.forEach((sprite) => {
+      console.log(sprite[0], sprite);
       new Sprites[sprite[0]](vec2(sprite[1], sprite[2]), Game, sprite[3]);
       if (sprite[0] === 'Animal') {
         this.g.animals += 1;
@@ -74,6 +79,9 @@ export default class Main extends Scene {
     engineObjects.forEach((o) => {
       if (o.constructor.name === 'Boat') {
         this.boat = o;
+      }
+      if (o.isBaddie) {
+        this.g.baddies += 1;
       }
     });
 
@@ -91,6 +99,13 @@ export default class Main extends Scene {
       new Bubble(this.fireTiles.rnd());
     }
 
+    if (this.g.achieved.kills.length === this.g.baddies
+      && this.g.levelNum === 4
+      && !this.killer) {
+      this.killer = true;
+      this.g.medals[3].unlock();
+    }
+
     super.update();
     this.updateTimer();
 
@@ -100,7 +115,6 @@ export default class Main extends Scene {
       this.alert = new Alert('GAME OVER', this.g.fonts, 5, true, 'red');
       this.restartTimer = new Timer();
       this.restartTimer.set(3);
-      // post score
     }
 
     if (this.g.saved === this.g.animals && !this.escapeAlert) {
@@ -113,6 +127,15 @@ export default class Main extends Scene {
       this.boat.isExiting = true;
       this.g.music.stop();
       this.g.music.play('levelComplete');
+      if (this.g.achieved.kills.length === 0
+        && this.g.levelNum === 3
+        && !this.pacifist) {
+        this.pacifist = true;
+        this.g.medals[2].unlock();
+      }
+      if (this.timeLeft.raw >= 165) {
+        this.g.medals[1].unlock();
+      }
     }
 
     if (this.boat.isExiting && (this.boat.pos.x < 7 || this.boat.pos.x > 48) && !this.g.levelComplete) {

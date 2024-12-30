@@ -18,15 +18,50 @@ import CryptoJS from "crypto-js";
 class NewgroundsMedal extends Medal
 {
     /** Create a medal object and adds it to the list of medals */
-    constructor(id, name, description, icon, src)
-    { super(id, name, description, icon, src); }
+    constructor(id, name, description, icon, src, g, NGid) {
+    super(id, name, description, icon, src); 
+    this.g = g;
+    this.NGid = NGid;
+  }
 
     /** Unlocks a medal if not already unlocked */
     unlock()
     {
         super.unlock();
+        this.g.sfx.play('medal');
         newgrounds && newgrounds.unlockMedal(this.id);
     }
+
+  render(hidePercent=0) {
+    // super.render(hidePercent);
+        const context = overlayContext;
+        const width = min(medalDisplaySize.x, mainCanvas.width);
+        const x = overlayCanvas.width - width;
+        const y = -medalDisplaySize.y*hidePercent;
+
+        // draw containing rect and clip to that region
+        context.save();
+        context.beginPath();
+        // context.fillStyle = new Color(.9,.9,.9).toString();
+        // context.strokeStyle = new Color(0,0,0).toString();
+        context.fillStyle = this.g.palette.grass2.col;
+        context.strokeStyle = this.g.palette.grass.col;
+        context.lineWidth = 3;
+        context.rect(x, y, width, medalDisplaySize.y);
+        context.fill();
+        context.stroke();
+        context.clip();
+
+
+        // draw the icon and text
+        this.renderIcon(vec2(x+medalDisplayIconSize/2, y+medalDisplaySize.y/2));
+
+        const pos = vec2(x+medalDisplayIconSize+30, y+18);
+        this.g.fonts.white.drawTextScreen(this.name, pos, 3);
+        pos.y += 32;
+        this.g.fonts.white.drawTextScreen(this.description, pos, 1.8);
+        context.restore();
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

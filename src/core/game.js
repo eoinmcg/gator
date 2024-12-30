@@ -10,9 +10,13 @@ import colorFont from "../helpers/colorFont.js";
 import { newgroundsInit } from "../lib/newgrounds.js";
 import keys from "../data/keys.js";
 
+import generateMedals from "../data/medals.js";
+import { name as gameTitle } from "../../package.json"
+
+
+
 let newgrounds = newgroundsInit(keys.AppID, keys.EncryptionKey);
 let scoreboard = newgrounds.getScores(keys.ScoreBoard);
-console.log(scoreboard);
 
 const Game = {
   W: 960,
@@ -43,6 +47,8 @@ font.image.onload = () => {
     Game.fonts[col] = new FontImage(image);
   });
 }
+
+Game.medals = generateMedals(gameTitle, Game);
 
 const sceneManager = new SceneManager(Game);
 Game.sceneManager = sceneManager;

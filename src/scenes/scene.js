@@ -23,6 +23,7 @@ export default class Scene {
       this.skip = true;
     }
 
+
   }
 
   updatePost() { }

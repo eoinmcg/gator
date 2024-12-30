@@ -166,6 +166,7 @@ export default class Tutorial extends Scene {
       if (this.alert) { this.alert.destroy(); }
       this.tutor.speak(`AWESOME! YOU'RE READY!`);
       this.finishTimer.set(3);
+      this.g.medals[0].unlock();
     }
 
     if (this.goals.inBoat && this.finishTimer.elapsed()) {

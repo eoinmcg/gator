@@ -43,6 +43,7 @@ export default class Player extends Sprite {
     this.keys = 0;
 
     this.mirror = this.getPosFromXCenter() < 0;
+    this.lavaSwim = false;
 
   }
 
@@ -139,6 +140,10 @@ export default class Player extends Sprite {
     if (mapTileIs('fire', this.belowTile) && !this.hurt) {
       this.particles.sparks(this.pos);
       this.loseLife(true);
+      if (!this.lavaSwim) {
+        this.lavaSwim = true;
+        this.g.medals[5].unlock();
+      }
     }
 
     if (mapTileIs('water', this.belowTile)) {

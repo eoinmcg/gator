@@ -10,6 +10,7 @@ const spriteAtlas = {
   353: 'Breakable',
   354: 'Breakable',
   357: 'Breakable', // key
+  334: 'Donut',
   369: 'Boat',
   281: 'Turret',
   282: 'Turret',

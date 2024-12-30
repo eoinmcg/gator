@@ -20,6 +20,8 @@ export default class Victory extends Scene {
     });
     this.score = this.formatter.format(this.g.score);
     postScore(this.g.score, this.g);
+    this.g.medals[4].unlock();
+     
 
   }
 
