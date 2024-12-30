@@ -28,12 +28,12 @@ class NewgroundsMedal extends Medal
     unlock()
     {
         super.unlock();
-        if (this.unlocked) {
-          console.log('MEDAL ALREADY UNLOCKED');
-          // return;
-        }
+        // if (this.unlocked) {
+        //   console.log('MEDAL ALREADY UNLOCKED');
+        //   return;
+        // }
         this.g.sfx.play('medal');
-        newgrounds && newgrounds.unlockMedal(this.id);
+        newgrounds && newgrounds.unlockMedal(this.NGid);
     }
 
   render(hidePercent=0) {
