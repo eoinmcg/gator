@@ -92,8 +92,7 @@ export default class Sprite extends EngineObject {
       try {
         tileNum = parseInt(this.level[~~y][~~x], 10);
       } catch (e) {
-        console.log('ERROR!: ', e, x, y);
-        // this.destroy();
+        // console.log('ERROR!: ', e, x, y);
       }
     }
     return tileNum;

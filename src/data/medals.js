@@ -9,13 +9,13 @@ let medalData = [
   },
   {
     name: 'Speedy',
-    info: 'Complete a mission faster than 2:45',
+    info: 'Finish faster than 2:45',
     icon: '⚡',
     id: 82320
   },
   {
     name: 'Pacifist',
-    info: 'Finish Mission 3 without a single kill',
+    info: 'Finish Mission 3 without killing',
     icon: '☮️',
     id: 82322
   },

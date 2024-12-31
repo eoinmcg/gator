@@ -16,7 +16,7 @@ import { name as gameTitle } from "../../package.json"
 
 
 let newgrounds = newgroundsInit(keys.AppID, keys.EncryptionKey);
-let scoreboard = newgrounds.getScores(keys.ScoreBoard);
+// let scoreboard = newgrounds.getScores(keys.ScoreBoard);
 
 const Game = {
   W: 960,
@@ -33,7 +33,7 @@ const Game = {
   startScene: 'Splash',
   images: ['sprites.png', 'tiles.png', 'splash3.png'],
   isNewgrounds: window.location.hostname === 'uploads.ungrounded.net',
-  scoreboard: scoreboard.result.data.scores,
+  // scoreboard: scoreboard.result.data.scores,
   ng: newgrounds
 };
 

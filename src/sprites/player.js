@@ -214,6 +214,7 @@ export default class Player extends Sprite {
     // drawText(this.belowTile, below);
     // drawRect(above, vec2(1), palette.white.mk(.2));
     // drawText(this.aboveTile, above);
+    // drawText(this.collideTiles, above.add(vec2(1.3,0)));
 
   }
 

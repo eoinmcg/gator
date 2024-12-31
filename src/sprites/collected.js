@@ -11,6 +11,7 @@ export default class Collected extends Sprite {
     this.startPos = pos.copy();
     this.range = 20;
     this.setCollision(false, false, false, false);
+    this.collidesTiles = false;
     this.gravityScale = 0;
     this.cb = cb;
   }

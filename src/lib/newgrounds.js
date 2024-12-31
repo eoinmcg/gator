@@ -180,6 +180,9 @@ class Newgrounds
      */
     call(component, parameters, async=false)
     {
+
+        if (!window.BUILD) { return; }
+
         const call = {'component':component, 'parameters':parameters};
         if (this.cipher)
         {
@@ -208,11 +211,13 @@ class Newgrounds
         const xmlHttp = new XMLHttpRequest();
         const url = 'https://newgrounds.io/gateway_v3.php';
         xmlHttp.open('POST', url, !debugMedals && async);
+
         xmlHttp.send(formData);
         debugMedals && console.log(xmlHttp.responseText);
         window.R = xmlHttp;
         return xmlHttp.responseText && JSON.parse(xmlHttp.responseText);
     }
 }
+
 
 export { newgroundsInit, NewgroundsMedal };

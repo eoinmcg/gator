@@ -19,7 +19,8 @@ export default class Donut extends Sprite {
     if (o.constructor.name === 'Player') {
       this.g.sfx.play('key', this.pos);
       this.destroy();
-      new Speech(this, 'DELICIOUS');
+      const t = ['DELICIOUS', 'NOMNOM!'];
+      new Speech(this, t.rnd());
       if (this.g.levelNum === 5) {
         this.g.medals[6].unlock();
       }
