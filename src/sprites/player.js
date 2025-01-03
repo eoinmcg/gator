@@ -167,22 +167,13 @@ export default class Player extends Sprite {
 
 
 
-    let offsetX = (this.mirror) ? -0.61 : 0.61;
+    let offsetX = (this.mirror) ? -0.7 : 0.7;
     this.sideTile = this.getMapTile(vec2(offsetX,0));
     if (mapTileIs('solid', this.sideTile)) {
       this.move.x = 0;
       this.velocity.x = 0;
     }
 
-    // @todo ??
-    // prevent slipping through walls when turning
-    // if (mapTileIs('solid', this.belowTile)) {
-    //   if (this.onGround && this.velocity.y !== 0.0016666666666666668 && this.onGround) {
-    //     this.move.y = 0;
-    //     this.move.x = 0;
-    //   console.log('SOLID', this.velocity.y, this.pos.y, this.onGround);
-    //   }
-    // }
 
     if (mapTileIs('door', this.sideTile)) {
       if (this.keys > 0) {
@@ -209,7 +200,7 @@ export default class Player extends Sprite {
     // bump of ceiling to prevent passing thru
     if (this.collideTiles && this.aboveTile) {
       this.move.y = -0.1;
-      this.velocity.y *= -1;
+      this.velocity.y *= -0.2;
     }
 
     this.debugTiles = {
