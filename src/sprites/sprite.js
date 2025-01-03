@@ -38,7 +38,8 @@ export default class Sprite extends EngineObject {
       this.runAnim();
     }
 
-    this.sideTilePos = vec2(this.velocity.x < 0 ? -.9 : .9, 0);
+    // this.sideTilePos = vec2(this.velocity.x < 0 ? -.9 : .9, 0);
+    this.sideTilePos = vec2(this.mirror ? -.9 : .9, 0);
     this.bottomTilePos = vec2(this.velocity.x < 0 ? -.9 : .9,-.9);
     this.sideTile = this.getMapTile(this.sideTilePos);
     this.bottomTile = this.getMapTile(this.bottomTilePos);

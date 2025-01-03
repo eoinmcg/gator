@@ -30,6 +30,8 @@ export default class Drone extends Sprite {
   update() {
     super.update();
 
+    this.sideTilePos = vec2(this.velocity.x < 0 ? -.9 : .9, 0);
+    this.sideTile = this.getMapTile(this.sideTilePos);
     if (this.sideTile || this.pos.x < 10 || this.pos.x > 45) {
       this.flipX();
     }

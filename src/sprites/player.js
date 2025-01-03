@@ -45,6 +45,7 @@ export default class Player extends Sprite {
     this.mirror = this.getPosFromXCenter() < 0;
     this.lavaSwim = false;
 
+
   }
 
   update() {
@@ -157,14 +158,31 @@ export default class Player extends Sprite {
     if (this.belowTile !== 0 && !this.wasOnGround) {
       this.bounce(this.belowTile);
     }
-    this.onGround = this.belowTile !== 0;
+    this.onGround = this.belowTile !== 0 || this.velocity.y.toFixed(4) === '0.0017';
+
+    // edge case stop player falling thru
+    if (this.belowTile && this.velocity.y < -0.1 && this.move.x) {
+      this.pos.y += 0.5;
+    }
 
 
-    let offsetX = (this.mirror) ? -0.9 : 0.9;
+
+    let offsetX = (this.mirror) ? -0.61 : 0.61;
     this.sideTile = this.getMapTile(vec2(offsetX,0));
     if (mapTileIs('solid', this.sideTile)) {
       this.move.x = 0;
+      this.velocity.x = 0;
     }
+
+    // @todo ??
+    // prevent slipping through walls when turning
+    // if (mapTileIs('solid', this.belowTile)) {
+    //   if (this.onGround && this.velocity.y !== 0.0016666666666666668 && this.onGround) {
+    //     this.move.y = 0;
+    //     this.move.x = 0;
+    //   console.log('SOLID', this.velocity.y, this.pos.y, this.onGround);
+    //   }
+    // }
 
     if (mapTileIs('door', this.sideTile)) {
       if (this.keys > 0) {
@@ -177,15 +195,21 @@ export default class Player extends Sprite {
       }
     }
 
-    this.aboveTile = this.getMapTile(vec2(0,1));
-    let aboveTileL = this.getMapTile(vec2(-0.5,1)),
-        aboveTileR = this.getMapTile(vec2(0.5,1));
+    this.aboveTile = this.getMapTile(vec2(0,.9));
+    let aboveTileL = this.getMapTile(vec2(-0.5,.9)),
+        aboveTileR = this.getMapTile(vec2(0.5,.9));
     if (mapTileIs('passable', this.aboveTile)
         || mapTileIs('passable', aboveTileL)
         || mapTileIs('passable', aboveTileR)) {
       this.collideTiles = false;
     } else {
       this.collideTiles = true;
+    }
+
+    // bump of ceiling to prevent passing thru
+    if (this.collideTiles && this.aboveTile) {
+      this.move.y = -0.1;
+      this.velocity.y *= -1;
     }
 
     this.debugTiles = {
@@ -214,9 +238,10 @@ export default class Player extends Sprite {
     // drawText(this.belowTile, below);
     // drawRect(above, vec2(1), palette.white.mk(.2));
     // drawText(this.aboveTile, above);
-    // drawText(this.collideTiles, above.add(vec2(1.3,0)));
+    // drawText(this.onGround, above.add(vec2(1.3,0)));
 
   }
+
 
   drawObjects() {
     Object.keys(this.objects).forEach((n) => {
@@ -252,7 +277,6 @@ export default class Player extends Sprite {
   }
 
   bounce(tile) {
-
     if (tile === 37) {
       this.particles.splash(this.pos.add(vec2(0,-1)));
       this.g.sfx.play('splash', this.pos);
