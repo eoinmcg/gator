@@ -279,7 +279,12 @@ export default class Player extends Sprite {
 
   collideWithObject(o) {
 
+    if (o.constructor.name === 'Animal') {
+      return;
+    }
+
     this.inBoat = false;
+    console.log(o.constructor.name)
     if (o.constructor.name === 'Boat') {
       this.inBoat = true;
       this.boat = o;
