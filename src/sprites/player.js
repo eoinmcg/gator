@@ -284,7 +284,6 @@ export default class Player extends Sprite {
     }
 
     this.inBoat = false;
-    console.log(o.constructor.name)
     if (o.constructor.name === 'Boat') {
       this.inBoat = true;
       this.boat = o;
