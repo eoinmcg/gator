@@ -29,7 +29,7 @@ export default class SceneManager {
 
   changeScene(newScene, effect = 'complete') {
     const delta = new Date().getTime() - this.lastChange;
-    if (delta < 500) return;
+    if (delta < 1500) return;
 
     this.g.music.clear();
     this.lastChange = new Date().getTime();
