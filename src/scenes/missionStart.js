@@ -8,8 +8,8 @@ export default class MissionStart extends Scene {
 
     const levelLoader = Game.Loader;
     this.props = levelLoader.loadProps(this.g.levelNum);
-    if (!this.props) {
-      this.g.sceneManager.changeScene('Victory');
+    if (this.props === false) {
+      this.g.sceneManager.changeScene('Victory', 'complete', true);
       return;
     }
 

@@ -86,7 +86,7 @@ export default class Main extends Scene {
 
     let p = level.objects.player;
     Game.p1 = new Player(vec2(p[0], p[1]), Game);
-    setCameraPos(Game.levelSize.scale(.5));
+    setCameraPos(this.g.p1.pos);
 
     this.restartTimer = new Timer();
 

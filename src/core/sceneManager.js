@@ -27,9 +27,11 @@ export default class SceneManager {
     this.lastChange = 500;
   }
 
-  changeScene(newScene, effect = 'complete') {
+  changeScene(newScene, effect = 'complete', force = false) {
     const delta = new Date().getTime() - this.lastChange;
-    if (delta < 1500) return;
+    if (!force && delta < 1000) {
+      return;
+    }
 
     this.g.music.clear();
     this.lastChange = new Date().getTime();
@@ -44,9 +46,7 @@ export default class SceneManager {
       document.body.classList.remove('complete');
       this.currentScene = new Scenes[newScene];
       this.currentScene.enter(this.g);
-
-
-    }, 750);
+    }, 250);
   }
 
   update() {
