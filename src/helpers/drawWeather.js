@@ -47,18 +47,17 @@ const drawWeather = {
   },
   rain: function() {
     const random = new RandomGenerator(skySeed);
-    for (let i = 1e3; i--;)
+    for (let i = 2e3; i--;)
     {
         let size = random.float(6, 1);
-      let speedX = 200,
+      let speedX = 100,
       speedY = 500
 
-        
         const extraSpace = 200;
         const w = mainCanvas.width+2*extraSpace, h = mainCanvas.height+2*extraSpace;
         const screenPos = vec2(
             (random.float(w)+time*speedX)%w-extraSpace,
-            (random.float(h)+time*speedY*random.float())%h-extraSpace);
+            (random.float(h)+time*speedY)%h-extraSpace);
 
         mainContext.fillStyle = palette.sky2.col;
         mainContext.fillRect(screenPos.x, screenPos.y, size, size);

@@ -35,7 +35,7 @@ export default class SceneManager {
 
     this.g.music.clear();
     this.lastChange = new Date().getTime();
-    document.body.classList.add('complete');
+    document.body.classList.add(effect);
 
     window.setTimeout(() => {
     if (this.currentScene) {
@@ -43,7 +43,7 @@ export default class SceneManager {
     }
       engineObjectsDestroy();
       this.clearInput();
-      document.body.classList.remove('complete');
+      document.body.classList.remove(effect);
       this.currentScene = new Scenes[newScene];
       this.currentScene.enter(this.g);
     }, 250);
