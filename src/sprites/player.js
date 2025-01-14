@@ -103,8 +103,12 @@ export default class Player extends Sprite {
   }
 
   handleShoot() {
-    this.shoot  = keyIsDown('Space') || keyIsDown('KeyX') || gamepadIsDown(2);
-    if (this.shoot && this.shootTimer.elapsed()) {
+    // this.shoot  = keyIsDown('Space') || keyIsDown('KeyX') || gamepadIsDown(2);
+    this.shoot  = keyWasPressed('Space') || keyWasPressed('KeyX') || gamepadWasPressed(2);
+    // if (this.shoot && this.shootTimer.elapsed() && this.g.ammo > 0) {
+    // if (this.shoot && this.shootTimer.elapsed()) {
+    if (this.shoot) {
+      this.g.ammo -= 1;
       this.shots += 1;
       new Lazer(this.pos, this.mirror, this.g);
     } else {
@@ -165,8 +169,6 @@ export default class Player extends Sprite {
       this.pos.y += 0.5;
     }
 
-
-
     let offsetX = (this.mirror) ? -0.7 : 0.7;
     this.sideTile = this.getMapTile(vec2(offsetX,0));
     if (mapTileIs('solid', this.sideTile)) {
@@ -198,7 +200,7 @@ export default class Player extends Sprite {
     }
 
     // bump of ceiling to prevent passing thru
-    if (this.collideTiles && this.aboveTile) {
+    if (this.collideTiles && this.aboveTile && this.velocity.y > 0.2) {
       this.move.y = -0.1;
       this.velocity.y *= -0.2;
     }
@@ -268,6 +270,7 @@ export default class Player extends Sprite {
   }
 
   bounce(tile) {
+    if (time - this.lastBounce < .5) return;
     if (tile === 37) {
       this.particles.splash(this.pos.add(vec2(0,-1)));
       this.g.sfx.play('splash', this.pos);
@@ -275,6 +278,7 @@ export default class Player extends Sprite {
       this.g.sfx.play('bounce', this.pos);
       this.particles.bounce(this.pos, this.size);
     }
+    this.lastBounce = time;
   }
 
   collideWithObject(o) {

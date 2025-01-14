@@ -47,6 +47,7 @@ export default class Main extends Scene {
     this.skyExtras = level.props.extras || false
     this.skyExtras = (this.skyExtras) ? this.skyExtras.split(',') : [];
     this.weather = level.props.weather || false;
+    this.g.ammo = level.props.ammo || 50;
 
     this.g.animals = 0;
     this.g.baddies = 0;
@@ -178,7 +179,6 @@ export default class Main extends Scene {
       this.g.fonts['white'].drawText(`X TO RESTART`, cameraPos.add(vec2(0,1.5)), .15, true);
 
     }
-
   }
 
   renderPost() {
@@ -205,6 +205,11 @@ export default class Main extends Scene {
         tile(100, vec2(8))
       );
     }
+
+
+    // let ammo = String(this.g.ammo).padStart(2, '0');
+    // this.g.fonts.black.drawText(`${ammo}`, cameraPos.add(vec2(13,11.37)), .15, true);
+    // this.g.fonts.white.drawText(`${ammo}`, cameraPos.add(vec2(13,11.5)), .15, true);
 
     let x = Game.p1.jetpackEnergy * 5;
     let base = 11;
