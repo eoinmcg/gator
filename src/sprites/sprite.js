@@ -22,6 +22,8 @@ export default class Sprite extends EngineObject {
 
     this.lastPos = this.pos;
     this.lastVel = this.velocity;
+
+    this.dead = false;
   }
 
   update() {

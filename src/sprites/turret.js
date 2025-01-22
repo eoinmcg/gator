@@ -83,6 +83,8 @@ export default class Turret extends Sprite {
   }
 
   destroy() {
+    if (this.dead) return;
+    this.dead = true;
     this.particles.explode(this.pos, this.size);
     this.makeDebris(this.pos, 'white', 5, .3, 0, 1);
     this.g.sfx.play('explosion', this.pos);

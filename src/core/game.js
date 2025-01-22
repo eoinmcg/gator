@@ -13,10 +13,7 @@ import keys from "../data/keys.js";
 import generateMedals from "../data/medals.js";
 import { name as gameTitle } from "../../package.json"
 
-
-
 let newgrounds = newgroundsInit(keys.AppID, keys.EncryptionKey);
-// let scoreboard = newgrounds.getScores(keys.ScoreBoard);
 
 const Game = {
   W: 960,
@@ -67,6 +64,7 @@ if (window.BUILD) {
   const params = Object.fromEntries(new URLSearchParams(location.search))
   if(params.levelNum) {
     Game.levelNum = parseInt(params.levelNum, 10);
+    Game.lives = 2;
   }
   if(params.startScene) {
     Game.startScene = params.startScene;

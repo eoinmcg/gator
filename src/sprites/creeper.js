@@ -89,6 +89,8 @@ export default class Creeper extends Sprite {
   }
 
   destroy() {
+    if (this.dead) return;
+    this.dead = true;
     super.destroy();
     this.particles.explode(this.pos, this.size);
     this.makeDebris(this.pos, 'white', 5, .3, 0, 1);

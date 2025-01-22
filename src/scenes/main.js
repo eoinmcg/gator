@@ -155,6 +155,8 @@ export default class Main extends Scene {
      && (keyIsDown('KeyX') || gamepadIsDown(2))) {
       this.g.lives = 2;
       this.g.score = 0;
+      this.g.achieved.kills = [];
+      this.g.achieved.saved = [];
       this.g.sceneManager.changeScene('Main');
     }
 

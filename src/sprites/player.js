@@ -33,6 +33,7 @@ export default class Player extends Sprite {
 
     this.boost = false;
     this.shotDelay = .1;
+    this.shotBurst = 0;
     this.shootTimer = new Timer();
     this.shootTimer.set(this.shotDelay);
     this.shots = 0;
@@ -103,13 +104,11 @@ export default class Player extends Sprite {
   }
 
   handleShoot() {
-    // this.shoot  = keyIsDown('Space') || keyIsDown('KeyX') || gamepadIsDown(2);
-    this.shoot  = keyWasPressed('Space') || keyWasPressed('KeyX') || gamepadWasPressed(2);
-    // if (this.shoot && this.shootTimer.elapsed() && this.g.ammo > 0) {
-    // if (this.shoot && this.shootTimer.elapsed()) {
-    if (this.shoot) {
+    this.shoot  = keyIsDown('Space') || keyIsDown('KeyX') || gamepadIsDown(2);
+    if (this.shoot && this.shotBurst < 4 && this.shootTimer.elapsed()) {
       this.g.ammo -= 1;
       this.shots += 1;
+      this.shotBurst += 1;
       new Lazer(this.pos, this.mirror, this.g);
     } else {
       this.shoot = false;
@@ -117,6 +116,14 @@ export default class Player extends Sprite {
     if (this.shootTimer.elapsed()) {
       this.shootTimer.set(this.shotDelay);
     }
+
+    this.shotReleased  = keyWasReleased('Space') || keyWasReleased('KeyX') || gamepadWasReleased(2);
+    if (this.shotReleased) {
+      console.log('released');
+      this.shotBurst = 0;
+      this.shootTimer.set(0);
+    }
+
   }
 
   handleBoost() {
@@ -200,8 +207,9 @@ export default class Player extends Sprite {
     }
 
     // bump of ceiling to prevent passing thru
-    if (this.collideTiles && this.aboveTile && this.velocity.y > 0.2) {
-      this.move.y = -0.1;
+    // if (this.collideTiles && this.aboveTile && this.velocity.y > 0.2) {
+    if (this.collideTiles && this.aboveTile) {
+      this.move.y = -0.25;
       this.velocity.y *= -0.2;
     }
 
